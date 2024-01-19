@@ -1,4 +1,5 @@
 let express = require("express");
+let socket = require("socket.io")
 
 //app setup
 let app = express();
@@ -12,3 +13,9 @@ let server = app.listen(3000,()=>{
 app.get("/",(res,req)=>{
     req.sendFile(__dirname+"/public/index.html");
 });
+
+//socket server setup
+let io=socket(server)
+io.on("connection",(socket)=>{
+    console.log("socket connection connected"+socket.id)
+})
