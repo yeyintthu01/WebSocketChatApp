@@ -19,5 +19,8 @@ let io=socket(server)
 io.on("connection",(socket)=>{
     socket.on("chat",(data)=>{
         io.sockets.emit("chat",data)
+    });
+    socket.on("typing",(name)=>{
+        socket.broadcast.emit("typing",name)
     })
 })
